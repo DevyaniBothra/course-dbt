@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: postgres 
+    schema: public # this is the schema our raw data lives in
+    database: raw # this is the name of our database
+
+    quoting: #default is false for Snowflake but varies by database
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    loaded_at_field: created_at #To configure sources to snapshot freshness information, add a freshness block to your source and loaded_at_field to your table declaration. required to calculate freshness for a table
+
+    tables: # 7 total
+
+      - name: events 
+        description: >
+          Contains site activity info related to event type
+  
+      - name: users
+        loaded_at_field: 
+        description: >
+          Contains contact info for each user
+    
+      - name: addresses
+        freshness: null # do not check freshness for this table
+        description: >
+          Contains user address. info
+
+      - name: orders
+        description: >
+          Contains order delivery info 
+
+      - name: products
+        freshness: null # do not check freshness for this table
+        description: >
+          Contains product name, price, and inventory
+      
+      - name: order_items
+        freshness: null # do not check freshness for this table
+        description: >
+          Contains order quantity 
+
+      - name: promos
+        freshness: null # do not check freshness for this table
+        description: >
+          Contains discount and status info for each promo 

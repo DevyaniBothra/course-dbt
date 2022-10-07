@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_addresses
+    description: User address info 
+  - name: stg_events
+    description: user behavior on website
+  - name: stg_order_items
+    description: products and quantity for each order
+  - name: stg_orders
+    description: order info
+  - name: stg_products
+    description: List of products, price, and inventory
+  - name: stg_promos
+    description: List of promos and their status
+  - name: stg_users
+    description: user contact info and when each order is created
