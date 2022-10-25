@@ -4,7 +4,7 @@
         , case when count(distinct order_id) > 1 then 'repeat'
         else 'no_repeat'
         end as repeat_status
-    from dev_db.dbt_simonc.postgres_orders
+    from dev_db.DBT_BOTHRADEVYANI.postgres_orders
     group by user_id
     )
 
